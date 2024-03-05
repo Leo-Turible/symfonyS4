@@ -39,6 +39,16 @@ class FournisseurRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByPostalCode(string $postalCode): array
+    {
+        return $this->createQueryBuilder('f')
+            ->join('f.address', 'a')
+            ->where('a.codePostal = :postalCode')
+            ->setParameter('postalCode', $postalCode)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Fournisseur[] Returns an array of Fournisseur objects
 //     */
