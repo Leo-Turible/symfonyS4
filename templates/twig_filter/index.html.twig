@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TwigFilterController!{% endblock %}
+
+{% block body %}
+    {{ 10|price }}
+    {{ 10|price('€', 2, ',', ' ') }}
+    {{ 10|price('$', 2, '.', ',') }}
+    {{ 10000.54|price('$', 0, '.', ',') }}
+    <br>
+    {{ 3|stars|raw }}
+{% endblock %}
