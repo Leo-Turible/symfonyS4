@@ -12,6 +12,8 @@ class AppExtension extends AbstractExtension
         return [
             new TwigFilter('price', [$this, 'formatPrice']),
             new TwigFilter('stars', [$this, 'stars'], ['is_safe' => ['html']]),
+            new TwigFilter('dateFr', [$this, 'dateFr']),
+            new TwigFilter('formatPhone', [$this, 'formatPhone']),
         ];
     }
     public function formatPrice($number, $symbol = '€', $decimals = 0, $decPoint = '.', $thousandsSep = ',')
@@ -32,5 +34,15 @@ class AppExtension extends AbstractExtension
         }
 
         return $html;
+    }
+    public function dateFr()
+    {
+        $date = new \DateTime();
+        $formatter = new \IntlDateFormatter('fr_FR', \IntlDateFormatter::FULL, \IntlDateFormatter::NONE);
+        return $formatter->format($date);
+    }
+    public function formatPhone($phone)
+    {
+        return preg_replace('/(\d{2})(?=\d)/', '$1 ', $phone);
     }
 }
