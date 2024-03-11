@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <h1>{{ 'welcome_message'|trans }}</h1>
+    <h1>{{ 'welcome_message'|trans({}, 'messages', 'en') }}</h1>
+    <h1>{{ 'welcome_message'|trans({}, 'messages', 'fr') }}</h1>
+    <a href="{{ path('change_locale', {'_locale': 'en'}) }}" class="btn btn-primary">English</a>
+    <a href="{{ path('change_locale', {'_locale': 'fr'}) }}" class="btn btn-primary">Français</a>
+    <div>
+        {% for adresse in adresses %}
+            {{ adresse.adresse1 }}<br>
+            {{ adresse.adresse2 }}<br>
+            {{ adresse.codePostal }}<br>
+            {{ adresse.ville }}<br>
+        {% endfor %}
+    </div>
+{% endblock %}

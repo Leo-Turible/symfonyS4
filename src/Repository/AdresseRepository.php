@@ -54,13 +54,13 @@ class AdresseRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Adresse
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findOneBySomeField($value): ?Adresse
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.codePostal = :codePostal')
+            ->setParameter('codePostal', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
 }
